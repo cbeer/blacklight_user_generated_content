@@ -1,0 +1,3 @@
+class BlacklightUserGeneratedContent::Tags
+
+end

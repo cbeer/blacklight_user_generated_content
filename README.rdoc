@@ -1,0 +1,69 @@
+BlacklightUserGeneratedContent: Blacklight plugin that exposes user generated content plugins (tags, comments, ratings) from well-establed Rails plugins within the Blacklight SolrDocument
+
+= Description
+
+WARNING: This plugin is just an ugly hack until Rails 3, which possibly makes this kind of thing easier with ActiveModels and the like
+
+BlacklightUserGeneratedContent adds surrogate methods to the SolrDocument object for acts_as_taggable_on, acts_as_commentable and acts_as_rateable, which allows Rails to use the SolrDocument objects with the functionality provided by those plugins without making a mess in the controller or views.
+
+= Requirements
+
+A Rails app using the Blacklight plugin (tested against post-version 2.5). 
+
+= Installation
+
+This is a plugin, not a gem (because the structure was copied from existing plugins; in theory, it should be possible to make this a gem in the future).
+
+ A couple different ways to get the source into your vendor/plugins directory. 
+
+Go into your application directory, and run: 
+
+./script/plugin install git://github.com/cbeer/blacklight_user_generated_content.git
+
+Later you can run ./script/plugin update blacklight_user_generated_content if you like. 
+
+Requires git installed on your system. There are other ways to get the plugin in there too.
+
+OR
+cd $your_app/vendor/plugins
+git clone git://github.com/cbeer/blacklight_user_generated_content.git 
+
+After installing the plugin, there are a number of migration generators to run from the third-party plugins:
+
+  script/generate acts_as_taggable_on_migration
+  script/generate acts_as_rateable_migration
+  script/generate comment
+
+Depending on your Solr primary key information, you may need to modify the generated migrations to accept string-type reference ids.
+
+= Configuration
+
+
+== Injection
+
+This plugin assumes it is in a Blacklight Rails app, uses Blacklight methods, Rails methods, and standard ruby module includes to inject it's behaviors into the app.  
+
+You can turn off this injection if you like, although it will make the plugin less (or non-) functional unless you manually do similar injection. See lib/blacklight_user_generated_content.rb#inject! to see exactly what's going on. 
+
+In any initializer, you can set:
+
+  BlacklightUserGeneratedContent.omit_inject = true
+
+to turn off all injection. The plugin will be completely non-functional if you do this, of course. But perhaps you could try to re-use some of it's classes in a non-Blacklight, highly hacked Blacklight, or even non-Rails application this way. 
+
+You can also turn off injection of individual components, which could be more useful:
+   
+  BlacklightUserGeneratedContent.omit_inject = {
+    :solrdocument_mixin => false,
+    :view_helpers => false,
+    :controller_mixin => false
+    :tags => false,
+    :comments => false,
+    :rating => false
+  }
+
+= Tests
+
+There are none. This is bad I know, sorry. 
+
+
