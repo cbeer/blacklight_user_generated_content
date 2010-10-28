@@ -17,6 +17,9 @@ module BlacklightUserGeneratedContent::Rating::SolrDocumentOverride
   def rated_by? user
     surrogate.rated_by? user
   end
+  def ratings
+    surrogate.ratings
+  end
 
   def self.find_average_of rating
     Surrogate.find_average_of rating
