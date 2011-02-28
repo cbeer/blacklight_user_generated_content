@@ -1,8 +1,12 @@
 class CommentsController < ApplicationController
+  include Blacklight::SolrHelper
+
   # GET /comments
   # GET /comments.xml
   def index
-    @comments = Comment.all
+    @response, @documents = get_solr_response_for_field_values("id",params[:catalog_id])
+    @comments = @documents.first.comments
+    @comments ||= Comment.all
 
     respond_to do |format|
       format.html # index.html.erb
