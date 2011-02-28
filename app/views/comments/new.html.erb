@@ -1,9 +1,2 @@
-<% form_for(@comment) do |f| %>
-  <%= f.hidden_field :commentable_id, :value => @document.id %>
-  <%= f.hidden_field :commentable_type, :value => @document.class %>
+<%= render :partial => 'form', :locals => { :comment => @comment, :document => @document } %>
 
-  <%= f.label :comment %>
-  <%= f.text_area :comment %>
-
-  <%= f.submit %>
-<% end %>

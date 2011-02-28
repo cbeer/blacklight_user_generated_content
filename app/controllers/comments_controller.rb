@@ -48,6 +48,7 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.xml
   def create
+    params[:comment][:commentable_type] = "Surrogate" if params[:comment][:commentable_type] == "SolrDocument"
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
     respond_to do |format|
