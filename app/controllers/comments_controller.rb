@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
   # GET /comments.xml
   def index
     @response, @documents = get_solr_response_for_field_values("id",params[:catalog_id])
-    @comments = @documents.first.comments
+    @document = @documents.first
+    @comments = @document.comments
     @comments ||= Comment.all
 
     respond_to do |format|
@@ -35,7 +36,9 @@ class CommentsController < ApplicationController
   # GET /comments/new
   # GET /comments/new.xml
   def new
-    @document = Surrogate.with_id(params[:catalog_id] || params[:solr_document_id] || params[:object_id])
+    @response, @documents = get_solr_response_for_field_values("id",params[:catalog_id])
+    @document = @documents.first
+
     @comment = Comment.new
 
     respond_to do |format|

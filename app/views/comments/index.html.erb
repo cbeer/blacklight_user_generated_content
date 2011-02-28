@@ -3,3 +3,5 @@
 <ul>
 <%= render :partial => 'comments/comment', :collection => @comments %>
 </ul>
+
+<%= render :partial => 'form', :locals => { :comment => Comment.new, :document => @document } %>
