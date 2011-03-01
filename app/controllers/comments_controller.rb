@@ -19,13 +19,6 @@ class CommentsController < ApplicationController
   # GET /comments/1.xml
   def show
     @comment = Comment.find(params[:id])
-    if @comment.commentable_type == 'Surrogate'
-      redirect_to catalog_url(:id => @comment.commentable_id)
-    else 
-      redirect_to @comment.commentable
-    end
-
-    return false
     
     respond_to do |format|
       format.html # show.html.erb
@@ -60,6 +53,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     respond_to do |format|
       if @comment.save
+        redirect_to catalog_comments_url(:catalog_id => @comment.commentable_id) and return if @comment.commentable_type == "Surrogate" 
         format.html { redirect_to(@comment, :notice => 'Comment was successfully created.') }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
@@ -76,6 +70,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
+        redirect_to catalog_comments_url(:catalog_id => @comment.commentable_id) and return if @comment.commentable_type == "Surrogate" 
         format.html { redirect_to(@comment, :notice => 'Comment was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -90,6 +85,8 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
+    
+    redirect_to catalog_comments_url(:catalog_id => @comment.commentable_id) and return if @comment.commentable_type == "Surrogate" 
 
     respond_to do |format|
       format.html { redirect_to(comments_url) }
