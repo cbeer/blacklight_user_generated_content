@@ -9,7 +9,6 @@ module BlacklightUserGeneratedContent
   def self.omit_inject ; @omit_inject ; end
   
   def self.inject!
-    Dispatcher.to_prepare do
       unless omit_inject[:solrdocument_mixin]
          SolrDocument.send(:include, BlacklightUserGeneratedContent::SolrDocumentOverride) unless SolrDocument.include?(BlacklightUserGeneratedContent::SolrDocumentOverride)
       end
@@ -43,21 +42,20 @@ module BlacklightUserGeneratedContent
 
      end
 
-     unless omit_inject[:rating]
-      unless omit_inject[:surrogate_mixin]
-         Surrogate.send(:include, BlacklightUserGeneratedContent::Rating::SurrogateOverride) unless Surrogate.include?(BlacklightUserGeneratedContent::Rating::SurrogateOverride)
-      end
-      unless omit_inject[:solrdocument_mixin]
-         SolrDocument.send(:include, BlacklightUserGeneratedContent::Rating::SolrDocumentOverride) unless SolrDocument.include?(BlacklightUserGeneratedContent::Rating::SolrDocumentOverride)
-      end
+  #   unless omit_inject[:rating]
+  #    unless omit_inject[:surrogate_mixin]
+  #       Surrogate.send(:include, BlacklightUserGeneratedContent::Rating::SurrogateOverride) unless Surrogate.include?(BlacklightUserGeneratedContent::Rating::SurrogateOverride)
+  #    end
+  #    unless omit_inject[:solrdocument_mixin]
+  #       SolrDocument.send(:include, BlacklightUserGeneratedContent::Rating::SolrDocumentOverride) unless SolrDocument.include?(BlacklightUserGeneratedContent::Rating::SolrDocumentOverride)
+  #    end
+  #
+  #    unless omit_inject[:user_mixin]
+  #       User.send(:include, BlacklightUserGeneratedContent::Rating::UserOverride) unless User.include?(BlacklightUserGeneratedContent::Rating::UserOverride)
+  #    end
 
-      unless omit_inject[:user_mixin]
-         User.send(:include, BlacklightUserGeneratedContent::Rating::UserOverride) unless User.include?(BlacklightUserGeneratedContent::Rating::UserOverride)
-      end
+  #   end
 
-     end
-
-    end
   end
 
   # Add element to array only if it's not already there

@@ -1,4 +1,4 @@
-<% form_for(comment) do |f| %>
+<%= form_for(comment) do |f| %>
   <%= f.hidden_field :commentable_id, :value => document.id %>
   <%= f.hidden_field :commentable_type, :value => document.class %>
 
