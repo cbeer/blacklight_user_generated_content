@@ -1,0 +1,17 @@
+<%= content_tag :li, :class => "comment comment-#{comment.id}" do %>
+<strong><%= comment.title || nil %></strong>
+<div class="byline">
+  <% if comment.user %>
+    By <%= comment.user.to_s %> at
+  <% end %>
+<%= comment.created_at.strftime("%m/%d/%Y") %></div>
+<div class="comment"><%= comment.comment %></div>
+
+<% if current_user and comment.user == current_user %>
+<div>
+<%= link_to 'Edit', edit_comment_path(comment) %>
+<%= link_to 'Destroy', comment, :confirm => 'Are you sure?', :method => :delete %>
+     </div>
+   </li>
+ <% end %>
+ <% end %>

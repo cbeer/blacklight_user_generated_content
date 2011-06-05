@@ -1,0 +1,17 @@
+<div class="defList_container">
+  <div class="blacklight-tags">
+      <div class="label">My Tags</div>
+      <div class="value">
+      <%= document.owner_tag_list_on(current_user, :tags).join(", ") %>
+      </div>
+  </div>
+  <div class="blacklight-comments">
+    <div class="label">My Notes</div>
+      <div class="value">
+      <% document.comments.where(:user_id => current_user.id).each do |c| %>
+        <p><span style="display: inline-block; width: 90px"><%= c.created_at.strftime("%m/%d/%Y") %></span><%= truncate(c.comment, :length => 150) %> <%= link_to '[View]', catalog_path(document.id, :anchor=> "comment-#{c.id}") %> </p>
+      <% end %>
+      </div>
+  </div>
+
+</div>

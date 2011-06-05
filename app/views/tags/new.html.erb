@@ -1,0 +1,9 @@
+<div id="new_tag" style="overflow: visible">
+  <h1>Add Tag</h1>
+  <%= form_for :document, :url => catalog_tags_path(:catalog_id => @document.id), :html => { :method => :post } do |f| %>
+    <%= label_tag :tags, 'Use "," to separate each tag.' %>
+    <%= text_field_tag :tags %>
+    <%= f.submit "Add Tag" %>
+  <% end %>
+</div>
+<%= @tags.join ", " %>

@@ -1,0 +1,32 @@
+	<% @page_title = application_name + ": My Notes" %>
+
+        <% extra_head_content << render_opensearch_response_metadata %>
+
+	<%= render :partial => 'did_you_mean' %>
+
+	<%= render 'constraints', :localized_params=>params %>
+
+        <h1>My Notes</h1>
+
+        <div class="search-results-header">
+  
+  <div class="pageEntriesInfo">
+    <%= page_entries_info @response.docs, :entry_name=>'item' %>
+    <%=link_to "Start&nbsp;over&thinsp;".html_safe, catalog_index_path, :id=>"startOverLink" %>
+  </div>
+  
+	<%= render 'sort_and_per_page' %>
+  
+        <%= render 'results_pagination' %>
+      </div>
+  
+
+	<%= render_document_list_partial %>
+
+	<% sidebar_items << capture do %>
+	  <%= render :partial=>'facets' %>
+	<% end %>
+
+  <%= render 'results_pagination' %>
+
+

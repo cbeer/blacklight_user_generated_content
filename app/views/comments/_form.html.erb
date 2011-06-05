@@ -1,0 +1,9 @@
+<%= form_for(comment) do |f| %>
+  <%= f.hidden_field :commentable_id %>
+  <%= f.hidden_field :commentable_type %>
+
+  <%= f.label :comment, "Body", :class => "ui-helper-hidden-accessible" %>
+  <%= f.text_area :comment %>
+
+  <%= f.submit "Add" %>
+<% end %>
