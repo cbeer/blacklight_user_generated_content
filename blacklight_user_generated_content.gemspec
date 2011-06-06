@@ -2,10 +2,13 @@
 # project in your rails apps through git.
 Gem::Specification.new do |s|
   s.name = "blacklight_user_generated_content"
-  s.summary = "Insert BlacklightUserGeneratedContent summary."
-  s.description = "Insert BlacklightUserGeneratedContent description."
-  s.files = Dir["{app,lib,config}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.rdoc"]
-  s.version = "0.0.1"
+  s.summary = "User Generated Content plugin for Blacklight"
+  s.description = "Tags and Comments for Blacklight documents"
+  s.authors = ["Chris Beer"]
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.require_paths = ["lib"]
+  s.version = "0.0.2"
 
   s.add_dependency "rails", "~> 3.0"
   s.add_dependency "blacklight" #, "~> 3.0"
