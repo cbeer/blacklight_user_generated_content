@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
-  s.version = "0.0.2"
+  s.version = "0.0.5"
 
   s.add_dependency "rails", "~> 3.0"
   s.add_dependency "blacklight" #, "~> 3.0"
