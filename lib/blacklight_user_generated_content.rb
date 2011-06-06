@@ -11,6 +11,7 @@ module BlacklightUserGeneratedContent
   autoload :Commentable, 'blacklight_user_generated_content/commentable'
   autoload :Comment, 'blacklight_user_generated_content/comment'
   autoload :RouteSets, 'blacklight_user_generated_content/route_sets'
+  autoload :Helper, 'blacklight_user_generated_content/helper'
 
   require 'blacklight_user_generated_content/engine' if defined?(Rails)
 
