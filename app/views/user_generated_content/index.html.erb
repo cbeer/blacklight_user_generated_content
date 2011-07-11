@@ -11,7 +11,7 @@
         <div class="search-results-header">
   
   <div class="pageEntriesInfo">
-    <%= page_entries_info @response.docs, :entry_name=>'item' %>
+    <%= render_pagination_info @response, :entry_name=>'item' %>
     <%=link_to "Start&nbsp;over&thinsp;".html_safe, catalog_index_path, :id=>"startOverLink" %>
   </div>
   
