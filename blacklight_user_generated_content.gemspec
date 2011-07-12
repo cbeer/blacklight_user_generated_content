@@ -1,5 +1,6 @@
 # Provide a simple gemspec so you can easily use your enginex
 # project in your rails apps through git.
+require File.join(File.dirname(__FILE__), "lib/blacklight_user_generated_content/version")
 Gem::Specification.new do |s|
   s.name = "blacklight_user_generated_content"
   s.summary = "User Generated Content plugin for Blacklight"
@@ -8,7 +9,7 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
-  s.version = "0.0.2"
+  s.version = BlacklightUserGeneratedContent::VERSION
 
   s.add_dependency "rails", "~> 3.0"
   s.add_dependency "blacklight" #, "~> 3.0"
