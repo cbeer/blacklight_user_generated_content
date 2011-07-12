@@ -6,6 +6,8 @@ Gem::Specification.new do |s|
   s.summary = "User Generated Content plugin for Blacklight"
   s.description = "Tags and Comments for Blacklight documents"
   s.authors = ["Chris Beer"]
+  s.email = "chris_beer@wgbh.org"
+  s.homepage = "http://projectblacklight.org"
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
