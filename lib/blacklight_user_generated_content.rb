@@ -24,5 +24,4 @@ module BlacklightUserGeneratedContent
 
   def self.omit_inject ; @omit_inject ; end
 
-
 end
