@@ -6,7 +6,9 @@ module BlacklightUserGeneratedContent::ActiveRecordDuckType
     base.send :extend, ActiveModel::Naming
     base.send :extend, ActiveModel::Callbacks
     base.send :extend, ActiveModel::Observing
-    base.send :define_model_callbacks, :destroy, :save
+    base.send :include, ActiveModel::Validations
+    base.send :include, ActiveRecord::AutosaveAssociation
+    base.send :define_model_callbacks, :destroy, :save, :create, :update
     base.send :include, ActiveRecord::Associations
     base.send :include, ActiveRecord::Reflection
 
@@ -36,11 +38,17 @@ module BlacklightUserGeneratedContent::ActiveRecordDuckType
     def table_exists?
        false
     end
+
+    def pluralize_table_names
+      false
+    end
   end
 
   
   # ActiveRecord instance mock methods
   module ActiveRecordInstanceMethods
+    def association_instance_set *args; end
+    def association_instance_get *args; end
     def quoted_id
       ActiveRecord::Base.quote_value id
     end
