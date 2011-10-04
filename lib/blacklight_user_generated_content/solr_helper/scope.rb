@@ -2,7 +2,7 @@ module BlacklightUserGeneratedContent
   module SolrHelper
     module Scope
       def self.included(some_class)
-        some_class.solr_search_params_logic << :restrict_to_user_generated_content_scope
+        some_class.solr_search_params_logic += [ :restrict_to_user_generated_content_scope]
       end
   
       def restrict_to_user_generated_content_scope solr_parameters, user_parameters
